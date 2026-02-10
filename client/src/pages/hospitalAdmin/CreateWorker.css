@@ -1,0 +1,105 @@
+/* CreateWorker.css */
+
+/* Ensure these variables match your main theme */
+:root {
+  --primary-green: #059669;
+  --green-hover: #047857;
+  --bg-color: #f0fdfa;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* 1. Layout Wrapper - Centers the card */
+.worker-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* 2. Card Container */
+.worker-card {
+  background: white;
+  width: 100%;
+  max-width: 400px; /* Compact width for a clean form look */
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+/* 3. Header Styling */
+.worker-header {
+  margin-bottom: 2rem;
+}
+
+.worker-header h2 {
+  color: var(--text-main);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.worker-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* 4. Input Fields */
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #fff;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1); /* Subtle green glow */
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+/* 5. Submit Button */
+.create-btn {
+  width: 100%;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 1rem;
+}
+
+.create-btn:hover {
+  background-color: var(--green-hover);
+  transform: translateY(-1px);
+}
+
+.create-btn:active {
+  transform: translateY(0);
+}

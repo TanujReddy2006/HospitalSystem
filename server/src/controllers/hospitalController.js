@@ -13,3 +13,11 @@ exports.createHospital = async (req, res) => {
 
   res.status(201).json(hospital);
 };
+exports.getHospitals = async (req, res) => {
+  try {
+    const hospitals = await Hospital.find();
+    res.status(200).json(hospitals);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch hospitals" });
+  }
+};

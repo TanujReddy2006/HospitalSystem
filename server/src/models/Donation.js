@@ -4,16 +4,25 @@ const donationSchema = new mongoose.Schema(
   {
     donorId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+      ref: "User",
+      required: true
     },
     hospitalId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hospital"
+      ref: "Hospital",
+      required: true
     },
-    bloodGroup: String,
+    bloodGroup: {
+      type: String,
+      required: true
+    },
+    donationDate: {
+      type: Date,
+      required: true
+    },
     status: {
       type: String,
-      enum: ["pending", "approved", "completed"],
+      enum: ["pending", "approved", "completed","rejected"],
       default: "pending"
     }
   },

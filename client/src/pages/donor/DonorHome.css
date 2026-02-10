@@ -1,32 +1,30 @@
 /* DonorHome.css */
 
-/* 1. Design System */
 :root {
-  --primary-blue: #2563eb;
-  --primary-red: #e11d48; /* Rose red for donor accents */
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --radius: 16px;
-  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --primary-red: #e11d48;
+  --red-hover: #be123c;
+  --soft-bg: #fff1f2;
+  --text-dark: #1e293b;
+  --text-gray: #475569;
 }
 
-.donor-layout {
+/* ===========================
+   PUBLIC LANDING PAGE STYLE
+   =========================== */
+.landing-layout {
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background: linear-gradient(180deg, #fff 0%, #fff1f2 100%);
   font-family: 'Inter', sans-serif;
+  color: var(--text-dark);
 }
 
-/* 2. Navigation */
-.donor-nav {
+.landing-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .nav-brand {
@@ -36,201 +34,209 @@
 }
 
 .nav-brand h1 {
-  font-size: 1.25rem;
-  color: var(--primary-red);
+  font-size: 1.5rem;
   font-weight: 800;
+  color: var(--primary-red);
   margin: 0;
 }
 
-.nav-profile {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+.brand-icon {
+  font-size: 1.5rem;
 }
 
-.welcome-text {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* Reusing the logout button style from previous turns */
-.logout-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid #e2e8f0;
-  background: white;
-  color: var(--text-muted);
-  border-radius: 8px;
+/* The Top Right Login Button */
+.nav-login-btn {
+  background: transparent;
+  border: 1px solid var(--primary-red);
+  color: var(--primary-red);
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px; /* Pill shape */
+  font-weight: 600;
   cursor: pointer;
-  font-size: 0.875rem;
   transition: all 0.2s;
 }
 
-.logout-btn:hover {
-  background: #fff1f2; /* Light red tint */
-  color: var(--primary-red);
-  border-color: var(--primary-red);
+.nav-login-btn:hover {
+  background: var(--primary-red);
+  color: white;
 }
 
-/* 3. Dashboard Container */
-.donor-container {
+/* Hero Section */
+.landing-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
-.donor-header {
+.hero-section {
+  margin-bottom: 5rem;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  background: -webkit-linear-gradient(#e11d48, #9f1239);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.cta-btn {
+  background-color: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
+  transition: transform 0.2s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--red-hover);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  text-align: left;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  border: 1px solid #fce7f3;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  color: var(--primary-red);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.feature-card p {
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* ===========================
+   LOGGED-IN DASHBOARD STYLE
+   =========================== */
+.dashboard-layout {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboard-nav {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+.logout-link {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.welcome-banner {
+  margin-bottom: 2.5rem;
+}
+.welcome-banner h2 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+.welcome-banner p { color: var(--text-gray); }
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
 
-.donor-header h2 {
-  font-size: 1.75rem;
-  color: var(--text-main);
-  margin: 0 0 0.5rem 0;
-}
-
-.donor-header p {
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* 4. Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.stat-card {
-  background: var(--card-bg);
+.stat-box {
+  flex: 1;
+  background: white;
   padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  border: 1px solid #f1f5f9;
-}
-
-/* Highlight the "Status" card slightly */
-.stat-card.highlight {
-  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
-  border-color: #bfdbfe;
-}
-
-.stat-icon {
-  font-size: 2rem;
-  background: #f8fafc;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.stat-info h3 {
-  margin: 0;
-  font-size: 1.25rem;
-  color: var(--text-main);
-}
+.stat-label { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-dark); }
+.status-active { color: #16a34a; }
 
-.stat-info p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-/* 5. Action Cards */
-.section-title {
-  font-size: 1.125rem;
-  color: var(--text-main);
-  margin-bottom: 1rem;
-}
-
-.actions-grid {
+/* Action Row */
+.action-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
 .action-card {
-  background: var(--card-bg);
+  background: white;
   padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #f1f5f9;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Primary Action (Book) gets specific styling */
-.action-card.primary {
-  border-left: 5px solid var(--primary-red);
-}
-
-.action-card.secondary {
-  border-left: 5px solid var(--primary-blue);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
 }
 
 .action-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-red);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-.action-icon-wrapper {
-  margin-bottom: 1.5rem;
-  color: var(--text-muted);
-  transition: color 0.3s;
-}
+.action-card h3 { color: var(--text-dark); margin-bottom: 0.5rem; }
+.action-card p { color: var(--text-gray); font-size: 0.95rem; }
 
-.action-card.primary:hover .action-icon-wrapper {
-  color: var(--primary-red);
-}
-
-.action-card.secondary:hover .action-icon-wrapper {
-  color: var(--primary-blue);
-}
-
-.action-content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
-  color: var(--text-main);
-}
-
-.action-content p {
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-.action-link {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--primary-blue);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.action-card.primary .action-link {
-  color: var(--primary-red);
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-  .donor-nav {
-    padding: 1rem;
-  }
-  
-  .welcome-text {
-    display: none; /* Hide welcome text on small screens */
-  }
-  
-  .donor-container {
-    padding: 1.5rem 1rem;
-  }
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-section h1 { font-size: 2.5rem; }
+  .stats-row, .action-row { flex-direction: column; grid-template-columns: 1fr; }
 }

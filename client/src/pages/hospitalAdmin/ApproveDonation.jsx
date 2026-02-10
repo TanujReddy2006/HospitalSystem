@@ -23,6 +23,18 @@ export default function ApproveDonation() {
     };
     fetchDonations();
   }, []);
+  const handleReject = async (id) => {
+  if (!window.confirm("Are you sure you want to reject this donation?")) return;
+
+  try {
+    await api.put(`/donations/${id}/reject`);
+    setDonations((prev) => prev.filter((donation) => donation._id !== id));
+    alert("Donation rejected.");
+  } catch (err) {
+    alert("Failed to reject donation.");
+  }
+};
+
 
   // 2. Handle Approval
   const handleApprove = async (id) => {
@@ -74,34 +86,46 @@ export default function ApproveDonation() {
                   </tr>
                 </thead>
                 <tbody>
-                  {donations.map((d) => (
-                    <tr key={d._id}>
-                      <td className="donor-name">
-                        <div className="avatar-circle">
-                          {d.donorName?.charAt(0) || "D"}
-                        </div>
-                        {d.donorName || "Unknown Donor"}
-                      </td>
-                      <td>
-                        <span className={`blood-badge ${d.bloodGroup?.replace('+', 'p').replace('-', 'n')}`}>
-                          {d.bloodGroup}
-                        </span>
-                      </td>
-                      <td className="text-muted">{d.disease || "None"}</td>
-                      <td className="text-muted">
-                        {new Date(d.date).toLocaleDateString()}
-                      </td>
-                      <td>
-                        <button 
-                          className="approve-btn"
-                          onClick={() => handleApprove(d._id)}
-                        >
-                          Approve
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+  {donations.map((d) => (
+    <tr key={d._id}>
+      <td className="donor-name">
+        <div className="avatar-circle">
+          {d.donorId?.name?.charAt(0) || "D"}
+        </div>
+        {d.donorId?.name || "Unknown Donor"}
+      </td>
+
+      <td>
+        <span className="blood-badge">
+          {d.bloodGroup}
+        </span>
+      </td>
+
+      <td className="text-muted">None</td>
+
+      <td className="text-muted">
+        {new Date(d.donationDate).toLocaleDateString()}
+      </td>
+
+      <td className="action-buttons">
+        <button
+          className="approve-btn"
+          onClick={() => handleApprove(d._id)}
+        >
+          Approve
+        </button>
+
+          <button
+            className="reject-btn"
+            onClick={() => handleReject(d._id)}
+          >
+            Reject
+          </button>
+        </td>
+    </tr>
+  ))}
+</tbody>
+
               </table>
             </div>
           )}

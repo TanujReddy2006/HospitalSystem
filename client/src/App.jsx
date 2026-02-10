@@ -11,11 +11,12 @@ import DonorHome from "./pages/donor/DonorHome";
 import HospitalAdminHome from "./pages/hospitalAdmin/HospitalAdminHome";
 import WorkerHome from "./pages/worker/WorkerHome";
 import CreateHospitalAdmin from "./pages/admin/CreateHospitalAdmin";
-
+import CreateWorker from "./pages/hospitalAdmin/CreateWorker";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<DonorHome />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/register" element={<Register />} />
       <Route path="/admin/create-hospital" element={<CreateHospital />} />
@@ -27,6 +28,8 @@ function App() {
       <Route path="/hospital-admin/home" element={<HospitalAdminHome />} />
       <Route path="/worker/home" element={<WorkerHome />} />
       <Route path="/admin/create-hospital-admin" element={<CreateHospitalAdmin />}/>
+      <Route path="/hospital-admin/create-worker"element={<CreateWorker />}
+/>
 
 
     </Routes>

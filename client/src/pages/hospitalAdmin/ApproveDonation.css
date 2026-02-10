@@ -183,3 +183,21 @@
   color: var(--text-muted);
   font-style: italic;
 }
+/* Reject Button */
+.reject-btn {
+  background-color: #ef4444; /* Red-500 */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-left: 0.5rem; /* Adds space if placed next to the Approve button */
+}
+
+.reject-btn:hover {
+  background-color: #dc2626; /* Red-600 */
+  transform: translateY(-1px);
+}

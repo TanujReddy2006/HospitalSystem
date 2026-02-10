@@ -31,4 +31,19 @@ exports.authorize = (...roles) => {
     }
     next();
   };
+  
 };
+exports.isHospitalAdmin = (req, res, next) => {
+  if (req.user.role !== "hospital_admin") {
+    return res.status(403).json({ message: "Access denied" });
+  }
+  next();
+};
+
+exports.isHospitalWorker = (req, res, next) => {
+  if (req.user.role !== "hospital_worker") {
+    return res.status(403).json({ message: "Access denied" });
+  }
+  next();
+};
+
