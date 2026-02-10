@@ -1,0 +1,185 @@
+/* ApproveDonation.css */
+
+/* 1. Design System (Emerald Green Theme) */
+:root {
+  --primary-green: #059669;
+  --green-hover: #047857;
+  --bg-color: #f0fdfa;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.approval-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.approval-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* 2. Header */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h2 {
+  color: var(--text-main);
+  margin: 0.5rem 0;
+  font-size: 1.75rem;
+}
+
+.page-header p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.back-btn:hover {
+  color: var(--primary-green);
+  text-decoration: underline;
+}
+
+/* 3. Table Card */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Keeps border radius on child table */
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.approval-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.approval-table th {
+  background-color: #f8fafc;
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.approval-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  color: var(--text-main);
+}
+
+.approval-table tr:last-child td {
+  border-bottom: none;
+}
+
+.approval-table tr:hover {
+  background-color: #fcfcfc;
+}
+
+/* 4. Column Specifics */
+.donor-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Blood Group Badges */
+.blood-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: #fee2e2;
+  color: #991b1b;
+  letter-spacing: 0.5px;
+}
+
+/* 5. Approve Button */
+.approve-btn {
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.approve-btn:hover {
+  background-color: var(--green-hover);
+  transform: translateY(-1px);
+}
+
+/* 6. Empty State */
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  color: var(--text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.loading-state {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}

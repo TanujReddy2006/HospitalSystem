@@ -1,0 +1,236 @@
+/* DonorHome.css */
+
+/* 1. Design System */
+:root {
+  --primary-blue: #2563eb;
+  --primary-red: #e11d48; /* Rose red for donor accents */
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --radius: 16px;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.donor-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+}
+
+/* 2. Navigation */
+.donor-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-brand h1 {
+  font-size: 1.25rem;
+  color: var(--primary-red);
+  font-weight: 800;
+  margin: 0;
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Reusing the logout button style from previous turns */
+.logout-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: var(--text-muted);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background: #fff1f2; /* Light red tint */
+  color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+/* 3. Dashboard Container */
+.donor-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.donor-header {
+  margin-bottom: 2.5rem;
+}
+
+.donor-header h2 {
+  font-size: 1.75rem;
+  color: var(--text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.donor-header p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 4. Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #f1f5f9;
+}
+
+/* Highlight the "Status" card slightly */
+.stat-card.highlight {
+  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+  border-color: #bfdbfe;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  background: #f8fafc;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.stat-info h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-main);
+}
+
+.stat-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* 5. Action Cards */
+.section-title {
+  font-size: 1.125rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.action-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Action (Book) gets specific styling */
+.action-card.primary {
+  border-left: 5px solid var(--primary-red);
+}
+
+.action-card.secondary {
+  border-left: 5px solid var(--primary-blue);
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.action-icon-wrapper {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.action-card.primary:hover .action-icon-wrapper {
+  color: var(--primary-red);
+}
+
+.action-card.secondary:hover .action-icon-wrapper {
+  color: var(--primary-blue);
+}
+
+.action-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: var(--text-main);
+}
+
+.action-content p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.action-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--primary-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.action-card.primary .action-link {
+  color: var(--primary-red);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .donor-nav {
+    padding: 1rem;
+  }
+  
+  .welcome-text {
+    display: none; /* Hide welcome text on small screens */
+  }
+  
+  .donor-container {
+    padding: 1.5rem 1rem;
+  }
+}

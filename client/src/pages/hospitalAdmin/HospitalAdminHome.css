@@ -1,0 +1,228 @@
+/* HospitalAdminHome.css */
+
+/* 1. Design System */
+:root {
+  --primary-green: #059669;    /* Emerald 600 */
+  --primary-teal: #0d9488;     /* Teal 600 */
+  --bg-color: #f0fdfa;         /* Very light teal background */
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.hospital-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+}
+
+/* 2. Navigation */
+.hospital-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  background-color: var(--primary-green);
+  color: white;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.nav-brand h1 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 700;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-role {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.logout-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+}
+
+/* 3. Dashboard Container */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+  font-size: 1.75rem;
+  color: var(--text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.dashboard-header p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 4. Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+/* The Urgent Card (Pending Approvals) pops with color */
+.stat-card.urgent {
+  border-bottom: 4px solid var(--primary-green);
+}
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-green);
+  line-height: 1.2;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* 5. Action Cards */
+.section-title {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.action-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-green);
+}
+
+.icon-wrapper {
+  padding: 0.75rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-wrapper.green {
+  background-color: #ecfdf5;
+  color: var(--primary-green);
+}
+
+.icon-wrapper.teal {
+  background-color: #f0fdfa;
+  color: var(--primary-teal);
+}
+
+.card-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.125rem;
+  color: var(--text-main);
+}
+
+.card-content p {
+  margin: 0 0 1rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.link-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .nav-user {
+    display: none; /* Hide role on mobile to save space */
+  }
+  
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+}
