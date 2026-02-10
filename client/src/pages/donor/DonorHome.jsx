@@ -127,7 +127,7 @@ export default function DonorHome() {
             <h3>📅 Book Appointment</h3>
             <p>Schedule a visit to a nearby hospital.</p>
           </div>
-          <div className="action-card secondary">
+          <div className="action-card secondary" onClick={() => navigate("/donor/history")}>
             <h3>📜 Donation History</h3>
             <p>View your past records.</p>
           </div>

@@ -8,9 +8,6 @@
   --text-gray: #475569;
 }
 
-/* ===========================
-   PUBLIC LANDING PAGE STYLE
-   =========================== */
 .landing-layout {
   min-height: 100vh;
   background: linear-gradient(180deg, #fff 0%, #fff1f2 100%);

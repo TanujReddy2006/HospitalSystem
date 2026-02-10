@@ -215,7 +215,12 @@
   display: flex;
   align-items: center;
 }
+/* Add this to HospitalAdminHome.css */
 
+.icon-wrapper.blue {
+  background-color: #eff6ff; /* Light Blue */
+  color: #2563eb;          /* Royal Blue */
+}
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
   .nav-user {

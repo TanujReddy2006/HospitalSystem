@@ -1,0 +1,59 @@
+.stock-layout {
+  padding: 20px;
+}
+
+.stock-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stock-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blood-group {
+  font-size: 28px;
+  font-weight: bold;
+  color: #c0392b;
+}
+
+.units {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.units span {
+  font-size: 14px;
+  color: #666;
+}
+
+.loading-text {
+  text-align: center;
+}
+
+.empty-state {
+  text-align: center;
+  color: #777;
+}

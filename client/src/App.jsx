@@ -12,6 +12,10 @@ import HospitalAdminHome from "./pages/hospitalAdmin/HospitalAdminHome";
 import WorkerHome from "./pages/worker/WorkerHome";
 import CreateHospitalAdmin from "./pages/admin/CreateHospitalAdmin";
 import CreateWorker from "./pages/hospitalAdmin/CreateWorker";
+import InventoryHistory from "./pages/hospitalAdmin/InventoryHistory";
+import BloodStock from "./pages/hospitalAdmin/BloodStock";
+import ManualStockUpdate from "./pages/worker/ManualStockUpdate";
+import DonationHistory from "./pages/donor/DonationHistory";
 function App() {
   return (
     <Routes>
@@ -28,8 +32,11 @@ function App() {
       <Route path="/hospital-admin/home" element={<HospitalAdminHome />} />
       <Route path="/worker/home" element={<WorkerHome />} />
       <Route path="/admin/create-hospital-admin" element={<CreateHospitalAdmin />}/>
-      <Route path="/hospital-admin/create-worker"element={<CreateWorker />}
-/>
+      <Route path="/hospital-admin/create-worker"element={<CreateWorker />}/>
+      <Route path="/hospital-admin/inventory-history" element={<InventoryHistory />}/>
+      <Route path="/hospital-admin/blood-stock"element={<BloodStock />}/>
+      <Route path="/worker/manual-stock" element={<ManualStockUpdate />}/>
+      <Route path="/donor/history"element={<DonationHistory />}/>
 
 
     </Routes>

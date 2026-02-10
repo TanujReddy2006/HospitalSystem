@@ -1,17 +1,19 @@
 /* CompleteDonation.css */
 
+/* 1. Design System (Worker Purple) */
 :root {
-  --primary-green: #059669;
-  --green-hover: #047857;
-  --bg-color: #f0fdfa;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
+  --primary-purple: #7c3aed;
+  --purple-hover: #6d28d9;
+  --bg-color: #f5f3ff;
+  --text-main: #1e1b4b;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* 1. Page Layout */
-.complete-layout {
+.worker-layout {
   min-height: 100vh;
   background-color: var(--bg-color);
   font-family: 'Inter', sans-serif;
@@ -20,9 +22,9 @@
   justify-content: center;
 }
 
-.complete-container {
+.worker-container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
 }
 
 /* 2. Header */
@@ -31,91 +33,190 @@
 }
 
 .page-header h2 {
-  color: var(--text-main);
   font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  margin: 0.5rem 0;
+  font-weight: 700;
 }
 
 .page-header p {
   color: var(--text-muted);
-  font-size: 1rem;
   margin: 0;
 }
 
-/* 3. Grid for Cards */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--primary-purple);
+  text-decoration: underline;
+}
+
+/* 3. Grid Layout */
 .donation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
-/* 4. Donation Card Styling */
+/* 4. The Card */
 .donation-card {
   background: white;
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.2s;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .donation-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #ddd6fe; /* Light purple border on hover */
 }
 
+/* Card Header */
 .card-header {
+  padding: 1.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  border-bottom: 1px solid #f9fafb;
 }
 
-.blood-badge {
-  background-color: #fee2e2;
-  color: #991b1b;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
+.donor-avatar {
+  width: 48px;
+  height: 48px;
+  background-color: #ede9fe;
+  color: var(--primary-purple);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
   font-weight: 700;
-  font-size: 0.875rem;
 }
 
 .donor-info h3 {
   margin: 0;
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   color: var(--text-main);
 }
 
-.donor-info p {
-  margin: 0.25rem 0 0;
-  font-size: 0.875rem;
+.info-badge {
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
-/* 5. Complete Button */
+.info-badge strong {
+  color: var(--primary-purple);
+}
+
+/* Card Body */
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: white;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Custom Select Arrow */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+/* Card Footer */
+.card-footer {
+  padding: 1.5rem;
+  background-color: #fafafa;
+  border-top: 1px solid var(--border-color);
+}
+
 .complete-btn {
   width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  background-color: var(--primary-green);
+  background-color: var(--primary-purple);
   color: white;
   border: none;
+  padding: 0.85rem;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background 0.2s;
 }
 
 .complete-btn:hover {
-  background-color: var(--green-hover);
+  background-color: var(--purple-hover);
 }
 
-/* 6. Empty State */
-.empty-state {
+/* Loading & Empty States */
+.empty-state, .loading-state {
   text-align: center;
-  padding: 3rem;
+  padding: 4rem 2rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-main);
+}
+
+.empty-state p {
   color: var(--text-muted);
-  font-style: italic;
 }

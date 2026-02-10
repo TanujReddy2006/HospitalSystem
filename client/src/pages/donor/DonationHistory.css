@@ -1,0 +1,209 @@
+/* DonationHistory.css */
+
+/* 1. Design System (Donor Red Theme) */
+:root {
+  --primary-red: #e11d48;       /* Rose 600 */
+  --bg-color: #fff1f2;          /* Rose 50 */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #fecdd3;      /* Rose 200 */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+.history-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.history-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* 2. Header */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h2 {
+  font-size: 1.75rem;
+  color: var(--text-main);
+  margin: 0.5rem 0 0 0;
+  font-weight: 800;
+}
+
+.page-header p {
+  color: var(--text-muted);
+  margin: 0.25rem 0 0 0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--primary-red);
+  text-decoration: underline;
+}
+
+/* 3. Card Wrapper */
+.history-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid white;
+  overflow: hidden;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* 4. Table Styling */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.history-table th {
+  background-color: #fff1f2; /* Light rose header */
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary-red);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.history-table tr:hover {
+  background-color: #fafafa;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 5. Column Specifics */
+.date-cell {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.hospital-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.hospital-addr {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.blood-badge {
+  font-weight: 700;
+  color: var(--primary-red);
+  background: #fff1f2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.units-cell {
+  font-family: 'Inter', monospace;
+  color: var(--text-muted);
+}
+
+/* 6. Status Badges */
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Completed = Green */
+.status-completed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* Approved = Blue */
+.status-approved {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Pending = Yellow/Orange */
+.status-pending {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+/* Rejected = Gray */
+.status-rejected {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  text-decoration: line-through;
+}
+
+/* 7. Empty State */
+.empty-state, .loading-state {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.book-btn {
+  background-color: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.book-btn:hover {
+  background-color: #be123c;
+  transform: translateY(-2px);
+}

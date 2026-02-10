@@ -8,6 +8,9 @@ const hospitalRoutes = require("./routes/hospitalRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const hospitalAdminRoutes = require("./routes/hospitalAdminRoutes");
+const InventoryRoutes=require("./routes/InventoryRoutes")
+const inventoryRoutes = require("./routes/InventoryRoutes");
+
 
 dotenv.config();
 
@@ -20,7 +23,7 @@ app.use("/api/hospitals", hospitalRoutes);
 app.use("/api/donations",donationRoutes)
 app.use("/api/admin", adminRoutes);
 app.use("/api/hospital-admin", hospitalAdminRoutes);
-
+app.use("/api/inventory",InventoryRoutes)
 
 connectDB().then(() => {
   seedAdmin();

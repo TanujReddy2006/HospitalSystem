@@ -1,4 +1,6 @@
 const express = require("express");
+const { getDonorDonationHistory } = require("../controllers/donationController");
+
 const {
   bookDonation,
   getPendingDonations,
@@ -12,7 +14,17 @@ const { protect, authorize,isHospitalAdmin,isHospitalWorker} = require("../middl
 
 const router = express.Router();
 
-
+router.get(
+  "/my-history",
+  protect,
+  (req, res, next) => {
+    if (req.user.role !== "donor") {
+      return res.status(403).json({ message: "Access denied" });
+    }
+    next();
+  },
+  getDonorDonationHistory
+);
 router.post("/", protect, authorize("donor"), bookDonation);
 router.put("/:id/approve", protect, isHospitalAdmin,approveDonation, approveDonation);
 router.put("/:id/complete", protect, authorize("hospital_worker"), completeDonation);

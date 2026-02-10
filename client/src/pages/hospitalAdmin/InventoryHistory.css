@@ -1,0 +1,200 @@
+/* InventoryHistory.css */
+
+/* 1. Design System (Teal/Emerald Theme) */
+:root {
+  --primary-teal: #0d9488;      /* Teal 600 */
+  --teal-light: #f0fdfa;        /* Teal 50 */
+  --bg-color: #f8fafc;          /* Slate 50 */
+  --text-main: #0f172a;         /* Slate 900 */
+  --text-muted: #64748b;        /* Slate 500 */
+  --border-color: #e2e8f0;      /* Slate 200 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.history-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.history-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* 2. Header */
+.page-header {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.header-content h2 {
+  font-size: 1.75rem;
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 700;
+}
+
+.header-content p {
+  color: var(--text-muted);
+  margin: 0.25rem 0 0 0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--primary-teal);
+  text-decoration: underline;
+}
+
+/* 3. Table Card Wrapper */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Rounds the corners of the table */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Scroll on mobile */
+}
+
+/* 4. Table Styling */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.history-table th {
+  background-color: #f1f5f9;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.history-table tr:hover {
+  background-color: var(--teal-light); /* Subtle highlight on hover */
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 5. Column Specific Styles */
+
+/* Date & Time */
+.date-cell {
+  display: flex;
+  flex-direction: column;
+}
+.date-cell .date {
+  font-weight: 600;
+  color: var(--text-main);
+}
+.date-cell .time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Blood Badges */
+.blood-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: #fee2e2;
+  color: #991b1b;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Units */
+.units-cell {
+  font-family: 'Inter', monospace; /* Monospace numbers align better */
+  color: var(--primary-teal);
+}
+
+/* Staff Avatar */
+.staff-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.staff-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.success {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+/* 6. Empty & Loading States */
+.empty-state, .loading-state {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.empty-state p, .loading-state {
+  color: var(--text-muted);
+}
