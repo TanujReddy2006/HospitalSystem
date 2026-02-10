@@ -81,7 +81,7 @@ export default function Register() {
           </button>
 
           <div className="form-footer">
-            <p>Already registered? <Link to="/">Login here</Link></p>
+            <p>Already registered? <Link to="/login">Login here</Link></p>
           </div>
         </form>
       </div>
