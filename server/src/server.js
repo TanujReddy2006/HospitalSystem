@@ -9,7 +9,7 @@ const donationRoutes = require("./routes/donationRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const hospitalAdminRoutes = require("./routes/hospitalAdminRoutes");
 const InventoryRoutes=require("./routes/InventoryRoutes")
-const inventoryRoutes = require("./routes/InventoryRoutes");
+
 
 
 dotenv.config();
@@ -28,7 +28,7 @@ app.use("/api/inventory",InventoryRoutes)
 connectDB().then(() => {
   seedAdmin();
 });
-
+  
 app.get("/", (req, res) => {
   res.send("Hospital System API Running");
 });
