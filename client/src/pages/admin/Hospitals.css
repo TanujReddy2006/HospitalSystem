@@ -1,0 +1,202 @@
+/* PAGE */
+.hospitals-page {
+  min-height: 100vh;
+
+  background: #f4f7fb;
+
+  padding: 40px;
+
+  font-family: Arial, sans-serif;
+}
+
+
+/* HEADER */
+.hospitals-header {
+  margin-bottom: 35px;
+}
+
+.hospitals-header h1 {
+  font-size: 38px;
+
+  color: #111827;
+
+  margin-bottom: 10px;
+
+  font-weight: 700;
+}
+
+.hospitals-header p {
+  color: #6b7280;
+
+  font-size: 17px;
+}
+
+
+/* GRID */
+.hospital-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 28px;
+}
+
+
+/* CARD */
+.hospital-card {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.06);
+
+  transition: 0.3s ease;
+}
+
+.hospital-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.1);
+}
+
+
+/* TOP */
+.hospital-top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 24px;
+}
+
+
+/* ICON */
+.hospital-icon {
+  width: 70px;
+
+  height: 70px;
+
+  border-radius: 18px;
+
+  background: #fee2e2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 34px;
+}
+
+
+/* NAME */
+.hospital-top h2 {
+  margin: 0;
+
+  font-size: 24px;
+
+  color: #111827;
+}
+
+
+/* VERIFIED */
+.verified-badge {
+  display: inline-block;
+
+  margin-top: 8px;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #dcfce7;
+
+  color: #166534;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* DETAILS */
+.hospital-details {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+/* DETAIL ITEM */
+.detail-item {
+  background: #f9fafb;
+
+  border-radius: 16px;
+
+  padding: 16px;
+}
+
+.detail-item span {
+  display: block;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  margin-bottom: 7px;
+}
+
+.detail-item strong {
+  color: #111827;
+
+  font-size: 16px;
+
+  word-break: break-word;
+}
+
+
+/* LOADING */
+.loading-box,
+.empty-box {
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  font-size: 18px;
+
+  color: #6b7280;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .hospitals-page {
+    padding: 20px;
+  }
+
+  .hospitals-header h1 {
+    font-size: 30px;
+  }
+
+  .hospital-card {
+    padding: 22px;
+  }
+}

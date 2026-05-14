@@ -38,3 +38,62 @@ exports.createHospitalAdmin = async (req, res) => {
     res.status(500).json({ message: "Failed to create hospital admin" });
   }
 };
+// GET ALL HOSPITALS
+exports.getAllHospitals =
+async (req, res) => {
+
+  try {
+
+    const hospitals =
+      await Hospital.find()
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      hospitals
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message:
+        "Failed to fetch hospitals"
+    });
+  }
+};
+
+
+// GET SINGLE HOSPITAL
+exports.getHospitalById =
+async (req, res) => {
+
+  try {
+
+    const hospital =
+      await Hospital.findById(
+        req.params.id
+      );
+
+    if (!hospital) {
+
+      return res.status(404).json({
+        message:
+          "Hospital not found"
+      });
+    }
+
+    res.status(200).json({
+      hospital
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message:
+        "Server error"
+    });
+  }
+};

@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
     },
     hospitalId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref:"Hospital",
       default: null
     }
   },

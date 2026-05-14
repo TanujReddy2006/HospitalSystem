@@ -89,6 +89,53 @@ export default function AdminHome() {
               <p>Assign an administrator to manage a specific hospital.</p>
             </div>
           </div>
+          {/* Card 3: View Hospitals */}
+<div
+  className="action-card"
+  onClick={() =>
+    navigate("/admin/hospitals")
+  }
+>
+
+  <div className="icon-wrapper green">
+
+    {/* Hospital List Icon */}
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+
+      <path d="M3 6h18" />
+
+      <path d="M3 12h18" />
+
+      <path d="M3 18h18" />
+
+      <path d="M8 3v18" />
+
+    </svg>
+
+  </div>
+
+  <div className="card-content">
+
+    <h3>
+      View Hospitals
+    </h3>
+
+    <p>
+      Browse all registered hospitals and details.
+    </p>
+
+  </div>
+
+</div>
 
         </section>
       </main>

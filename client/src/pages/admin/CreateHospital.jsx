@@ -1,18 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import L from "leaflet";
 import api from "../../api";
-import './CreateHospital.css';
+import "./CreateHospital.css";
+
+const markerIcon = new L.Icon({
+  iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+function LocationMarker({ setForm }) {
+  const [position, setPosition] = useState(null);
+
+  useMapEvents({
+    click(e) {
+      setPosition(e.latlng);
+      setForm((prev) => ({
+        ...prev,
+        lat: e.latlng.lat,
+        lng: e.latlng.lng,
+      }));
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position} icon={markerIcon} />
+  );
+}
 
 export default function CreateHospital() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Initialize state clearly
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     address: "",
-    phone: ""
+    phone: "",
+    lat: null,
+    lng: null,
   });
 
   const handleChange = (e) => {
@@ -20,16 +48,16 @@ export default function CreateHospital() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     setIsLoading(true);
 
     try {
       await api.post("/hospitals", form);
       alert("Hospital registered successfully!");
-      navigate("/admin/home"); // Redirect back to dashboard
+      navigate("/admin/home");
     } catch (err) {
       console.error(err);
-      alert("Failed to create hospital. Please check the details.");
+      alert("Failed to create hospital.");
     } finally {
       setIsLoading(false);
     }
@@ -38,90 +66,61 @@ export default function CreateHospital() {
   return (
     <div className="form-page-wrapper">
       <div className="form-card">
-        {/* Header Section */}
         <div className="form-header">
-          <button className="back-btn" onClick={() => navigate("/admin/home")}>
-            &larr; Back
-          </button>
           <h2>Register New Hospital</h2>
-          <p>Enter the details of the medical facility below.</p>
+          <p>Click on map to select exact location</p>
         </div>
 
-        {/* The Form */}
         <form onSubmit={handleSubmit} className="admin-form">
           <div className="form-grid">
             
-            {/* Name */}
             <div className="input-group">
-              <label htmlFor="name">Hospital Name</label>
-              <input
-                id="name"
-                name="name"
-                placeholder="e.g. City General Hospital"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+              <label>Name</label>
+              <input name="name" value={form.name} onChange={handleChange} required />
             </div>
 
-            {/* Email */}
             <div className="input-group">
-              <label htmlFor="email">Official Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="contact@hospital.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+              <label>Email</label>
+              <input type="email" name="email" value={form.email} onChange={handleChange} required />
             </div>
 
-            {/* Phone */}
             <div className="input-group">
-              <label htmlFor="phone">Contact Number</label>
-              <input
-                id="phone"
-                name="phone"
-                placeholder="+1 234 567 890"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
+              <label>Phone</label>
+              <input name="phone" value={form.phone} onChange={handleChange} required />
             </div>
 
-            {/* Address (Spans full width) */}
             <div className="input-group full-width">
-              <label htmlFor="address">Physical Address</label>
-              <textarea
-                id="address"
-                name="address"
-                placeholder="Street, City, Zip Code"
-                rows="3"
-                value={form.address}
-                onChange={handleChange}
-                required
-              />
+              <label>Address</label>
+              <textarea name="address" value={form.address} onChange={handleChange} required />
             </div>
+
+            <div className="input-group full-width">
+              <label>Select Location</label>
+
+              <MapContainer
+                center={[17.385044, 78.486671]} // Default: Hyderabad
+                zoom={13}
+                style={{ height: "300px", width: "100%" }}
+              >
+                <TileLayer
+                  attribution='&copy; OpenStreetMap contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationMarker setForm={setForm} />
+              </MapContainer>
+
+              {form.lat && (
+                <p>
+                  Selected: {form.lat.toFixed(5)}, {form.lng.toFixed(5)}
+                </p>
+              )}
+            </div>
+
           </div>
 
-          <div className="form-actions">
-            <button 
-              type="button" 
-              className="cancel-btn"
-              onClick={() => navigate("/admin")}
-            >
-              Cancel
-            </button>
-            <button 
-              type="submit" 
-              className="submit-btn" 
-              disabled={isLoading}
-            >
-              {isLoading ? "Registering..." : "Create Hospital"}
-            </button>
-          </div>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Registering..." : "Create Hospital"}
+          </button>
         </form>
       </div>
     </div>

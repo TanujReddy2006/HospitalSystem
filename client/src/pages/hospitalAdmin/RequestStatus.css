@@ -1,0 +1,182 @@
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES (THEMING & DESIGN TOKENS)
+   ========================================================================== */
+:root {
+  /* Colors */
+  --color-bg-page: #f4f7fb;
+  --color-bg-card: #ffffff;
+  --color-text-title: #0f172a; /* Slate 900 - Softer than pure black */
+  --color-text-body: #475569;  /* Slate 600 */
+  --color-text-strong: #1e293b; /* Slate 800 */
+  
+  --color-brand-primary: #dc2626; /* Red 600 */
+  --color-brand-hover: #b91c1c;   /* Red 700 */
+  
+  --color-success-bg: #ecfdf5;    /* Emerald 50 */
+  --color-success-border: #10b981;/* Emerald 500 */
+  --color-success-text: #047857;  /* Emerald 700 */
+
+  /* Typography */
+  /* Uses the native system font for a crisp, modern look on all devices */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 1.75rem;
+  --space-xl: 2.5rem;
+
+  /* Borders & Radii */
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  
+  /* Shadows (Layered for natural depth) */
+  --shadow-base: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-button: 0 4px 14px 0 rgba(220, 38, 38, 0.25);
+  
+  /* Transitions */
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   PAGE LAYOUT
+   ========================================================================== */
+.request-status-page {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+  padding: var(--space-xl);
+  font-family: var(--font-family-base);
+  box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+}
+
+.request-status-page h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem); /* Fluid typography */
+  color: var(--color-text-title);
+  margin-bottom: var(--space-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em; /* Tighter tracking looks more premium on headers */
+}
+
+.request-status-page > p {
+  font-size: 1.125rem;
+  color: var(--color-text-body);
+}
+
+/* ==========================================================================
+   REQUEST CARD COMPONENT
+   ========================================================================== */
+.request-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-base);
+  border-left: 6px solid var(--color-brand-primary); /* Slightly thinner, more elegant */
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+/* Interaction States */
+.request-card:hover,
+.request-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Card Typography */
+.request-card h3 {
+  font-size: 1.5rem;
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-md);
+  margin-top: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.request-card p {
+  font-size: 1.0625rem; /* ~17px */
+  color: var(--color-text-body);
+  margin: var(--space-xs) 0;
+  line-height: 1.5; /* Better readability */
+}
+
+.request-card strong {
+  color: var(--color-text-strong);
+  font-weight: 600;
+}
+
+/* Specific text treatments */
+.request-card > strong {
+  text-transform: capitalize;
+}
+
+.request-card p strong {
+  margin-left: 0.375rem;
+}
+
+/* ==========================================================================
+   SUB-COMPONENTS (STATUS BOX & BUTTONS)
+   ========================================================================== */
+.accepted-box {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border); /* 1px is cleaner than 2px */
+  border-radius: var(--radius-md);
+}
+
+.accepted-box h4 {
+  color: var(--color-success-text);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Action Button */
+.request-card button {
+  margin-top: var(--space-lg);
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-primary); /* Flat colors often look more modern than gradients */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
+  transition: all var(--transition-smooth);
+}
+
+/* Button Interactions */
+.request-card button:hover {
+  background: var(--color-brand-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px 0 rgba(220, 38, 38, 0.35);
+}
+
+.request-card button:active {
+  transform: translateY(0); /* Satisfying "click" feel */
+}
+
+.request-card button:focus-visible {
+  outline: 3px solid rgba(220, 38, 38, 0.4);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    /* Compress spacing on mobile */
+    --space-xl: 1.25rem;
+    --space-lg: 1.25rem;
+  }
+  
+  /* Less aggressive border-left on mobile to save space */
+  .request-card {
+    border-left-width: 4px; 
+  }
+}

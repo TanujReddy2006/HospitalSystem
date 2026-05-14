@@ -1,18 +1,39 @@
 const Hospital = require("../models/Hospital");
 
 exports.createHospital = async (req, res) => {
-  const { name, email, address, phone } = req.body;
+  try {
+    const { name, email, address, phone, lat, lng } = req.body;
 
-  const hospital = await Hospital.create({
-    name,
-    email,
-    address,
-    phone,
-    isVerified: true
-  });
+    // 1️⃣ Validate required fields
+    if (!name || !email || !address || !lat || !lng) {
+      return res.status(400).json({
+        message: "Name, email, address, lat and lng are required",
+      });
+    }
 
-  res.status(201).json(hospital);
+    // 2️⃣ Create hospital with GeoJSON format
+    const hospital = await Hospital.create({
+      name,
+      email,
+      address,
+      phone,
+      isVerified: true,
+
+      location: {
+        type: "Point",
+        coordinates: [lng, lat], // 🔥 IMPORTANT: [longitude, latitude]
+      },
+    });
+
+    res.status(201).json(hospital);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Failed to create hospital",
+    });
+  }
 };
+
 exports.getHospitals = async (req, res) => {
   try {
     const hospitals = await Hospital.find();

@@ -21,7 +21,19 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
-
+      console.log(res.data);
+      if (res.data.role === "hospital_admin") {
+      localStorage.setItem(
+  "hospitalId",
+  res.data.hospitalId
+);
+localStorage.setItem(
+  "userId",
+  res.data.userId
+);
+      console.log(localStorage.getItem("hospitalId"))
+      console.log(res.data);
+    }
       navigate("/dashboard");
     } catch (err) {
       alert(err.response?.data?.message || "Invalid credentials");

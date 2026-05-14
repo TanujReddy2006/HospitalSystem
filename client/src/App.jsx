@@ -16,6 +16,12 @@ import InventoryHistory from "./pages/hospitalAdmin/InventoryHistory";
 import BloodStock from "./pages/hospitalAdmin/BloodStock";
 import ManualStockUpdate from "./pages/worker/ManualStockUpdate";
 import DonationHistory from "./pages/donor/DonationHistory";
+import RequestBlood from "./pages/hospitalAdmin/RequestBlood";
+import RequestStatus from "./pages/hospitalAdmin/RequestStatus";
+import "leaflet/dist/leaflet.css";
+import RouteMap from "./pages/hospitalAdmin/RouteMap";
+import Hospitals from "./pages/admin/Hospitals";
+
 function App() {
   return (
     <Routes>
@@ -24,6 +30,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/register" element={<Register />} />
       <Route path="/admin/create-hospital" element={<CreateHospital />} />
+      <Route path="/admin/hospitals" element={<Hospitals />} />
       <Route path="/donor/book-donation" element={<BookDonation />} />
       <Route path="/hospital-admin/approve" element={<ApproveDonation />} />
       <Route path="/worker/complete" element={<CompleteDonation />} />
@@ -37,6 +44,10 @@ function App() {
       <Route path="/hospital-admin/blood-stock"element={<BloodStock />}/>
       <Route path="/worker/manual-stock" element={<ManualStockUpdate />}/>
       <Route path="/donor/history"element={<DonationHistory />}/>
+      <Route path="/hospital-admin/request-blood"element={<RequestBlood/>}/>
+      <Route path="/hospital-admin/request-status"element={<RequestStatus/>}/>
+      <Route path="/hospital-admin/route-map/:requestId" element={<RouteMap />}
+/>
 
 
     </Routes>
