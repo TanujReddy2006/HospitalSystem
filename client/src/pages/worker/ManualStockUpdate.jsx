@@ -17,89 +17,51 @@ export default function ManualStockUpdate() {
       alert("Please select a blood group and enter valid units.");
       return;
     }
-
     setIsLoading(true);
     try {
-      await api.post("/inventory/add", {
-        bloodGroup,
-        units: Number(units)
-      });
-
+      await api.post("/inventory/add", { bloodGroup, units: Number(units) });
       alert("Stock updated successfully!");
-      // Reset form
-      setBloodGroup("");
-      setUnits("");
+      setBloodGroup(""); setUnits("");
+      navigate("/hospital-admin/home");
     } catch (err) {
       alert(err.response?.data?.message || "Failed to update stock");
-    } finally {
-      setIsLoading(false);
-    }
+    } finally { setIsLoading(false); }
   };
 
   return (
     <div className="update-layout">
-      <div className="update-card">
-        {/* Header */}
-        <div className="form-header">
-          <button className="back-btn" onClick={() => navigate("/hospital-admin")}>
-            &larr; Dashboard
-          </button>
+      {/* Red Header Bar */}
+      <header className="page-header">
+        <div className="header-text">
           <h2>Manual Stock Adjustment</h2>
-          <p>Directly add blood units to inventory (e.g., from camps).</p>
+          <p>Directly add blood units to inventory.</p>
         </div>
+        <button className="back-btn" onClick={() => navigate("/worker/home")}>Back to Dashboard</button>
+      </header>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="update-form">
-          <div className="form-group">
-            <label htmlFor="bloodGroup">Blood Group</label>
-            <div className="select-wrapper">
-              <select
-                id="bloodGroup"
-                value={bloodGroup}
-                onChange={(e) => setBloodGroup(e.target.value)}
-                required
-              >
+      {/* Main Container */}
+      <main className="form-container">
+        <div className="update-card">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label>Blood Group</label>
+              <select value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)} required>
                 <option value="">-- Select Type --</option>
-                {BLOOD_GROUPS.map((bg) => (
-                  <option key={bg} value={bg}>
-                    {bg}
-                  </option>
-                ))}
+                {BLOOD_GROUPS.map(bg => <option key={bg} value={bg}>{bg}</option>)}
               </select>
             </div>
-          </div>
 
-          <div className="form-group">
-            <label htmlFor="units">Quantity (Units)</label>
-            <input
-              id="units"
-              type="number"
-              min="1"
-              placeholder="e.g. 10"
-              value={units}
-              onChange={(e) => setUnits(e.target.value)}
-              required
-            />
-          </div>
+            <div className="input-group">
+              <label>Quantity (Units)</label>
+              <input type="number" min="1" placeholder="e.g. 10" value={units} onChange={(e) => setUnits(e.target.value)} required />
+            </div>
 
-          <div className="form-actions">
-            <button 
-              type="button" 
-              className="cancel-btn"
-              onClick={() => navigate("/hospital-admin")}
-            >
-              Cancel
-            </button>
-            <button 
-              type="submit" 
-              className="submit-btn"
-              disabled={isLoading}
-            >
+            <button type="submit" className="submit-btn" disabled={isLoading}>
               {isLoading ? "Updating..." : "Add to Stock"}
             </button>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 }

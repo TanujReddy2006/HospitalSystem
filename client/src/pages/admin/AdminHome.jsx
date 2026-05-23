@@ -1,141 +1,140 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './AdminHome.css';
+import axios from "axios";
+import "./AdminHome.css";
 
 export default function AdminHome() {
   const navigate = useNavigate();
 
+  const [stats, setStats] = useState({
+    totalHospitals: 0,
+    totalAdmins: 0,
+    pendingRequests: 0
+  });
+
+  const [loading, setLoading] = useState(true);
+
   const handleLogout = () => {
-    // Clear data and redirect
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.clear();
     navigate("/");
+  };
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []);
+
+  const fetchDashboardStats = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(
+        "http://localhost:5000/api/admin/dashboard-stats",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      setStats(response.data);
+
+    } catch (error) {
+      console.error("Failed to fetch dashboard stats:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="admin-layout">
-      {/* Top Navigation Bar */}
-      <nav className="admin-nav">
-        <div className="nav-brand">
-          <h1>AdminPortal</h1>
+      {/* HEADER */}
+      <header className="page-header">
+        <div className="header-text">
+          <h2>Admin Portal</h2>
+          <p>System Overview & Administrative Controls</p>
         </div>
-        <div className="nav-user">
-          <span className="user-badge">System Administrator</span>
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
-        </div>
-      </nav>
 
-      {/* Main Dashboard Content */}
+        <button className="back-btn" onClick={handleLogout}>
+          Logout
+        </button>
+      </header>
+
       <main className="dashboard-container">
-        <header className="dashboard-header">
-          <h2>Dashboard Overview</h2>
-          <p>Manage hospitals, administrators, and system settings.</p>
-        </header>
 
-        {/* Quick Stats Section (Placeholders for future data) */}
+        {/* STATS */}
         <section className="stats-grid">
+
           <div className="stat-card">
-            <div className="stat-value">12</div>
-            <div className="stat-label">Active Hospitals</div>
+            <div className="stat-value">
+              {loading ? "..." : stats.totalHospitals}
+            </div>
+            <div className="stat-label">
+              Active Hospitals
+            </div>
           </div>
+
           <div className="stat-card">
-            <div className="stat-value">45</div>
-            <div className="stat-label">Registered Admins</div>
+            <div className="stat-value">
+              {loading ? "..." : stats.totalAdmins}
+            </div>
+            <div className="stat-label">
+              Registered Admins
+            </div>
           </div>
+
           <div className="stat-card">
-            <div className="stat-value">8</div>
-            <div className="stat-label">Pending Requests</div>
+            <div className="stat-value">
+              {loading ? "..." : stats.pendingRequests}
+            </div>
+            <div className="stat-label">
+              Pending Requests
+            </div>
           </div>
+
         </section>
 
-        {/* Primary Actions Grid */}
-        <h3 className="section-title">Quick Actions</h3>
+        {/* ACTIONS */}
+        <h3 className="section-title">
+          Quick Actions
+        </h3>
+
         <section className="actions-grid">
-          
-          {/* Card 1: Create Hospital */}
-          <div 
-            className="action-card" 
+
+          <div
+            className="action-card"
             onClick={() => navigate("/admin/create-hospital")}
           >
-            <div className="icon-wrapper blue">
-              {/* Hospital Icon SVG */}
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2v20m-5-5h10M4 7h16M9 2v20m6-20v20" />
-              </svg>
-            </div>
+            <div className="icon-wrapper blue">🏥</div>
+
             <div className="card-content">
               <h3>Add New Hospital</h3>
-              <p>Register a new medical facility into the system.</p>
+              <p>Register a new medical facility.</p>
             </div>
           </div>
 
-          {/* Card 2: Create Admin */}
-          <div 
-            className="action-card" 
+          <div
+            className="action-card"
             onClick={() => navigate("/admin/create-hospital-admin")}
           >
-            <div className="icon-wrapper purple">
-              {/* User Plus Icon SVG */}
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="8.5" cy="7" r="4" />
-                <line x1="20" y1="8" x2="20" y2="14" />
-                <line x1="23" y1="11" x2="17" y2="11" />
-              </svg>
-            </div>
+            <div className="icon-wrapper purple">👤</div>
+
             <div className="card-content">
-              <h3>Create Hospital Admin</h3>
-              <p>Assign an administrator to manage a specific hospital.</p>
+              <h3>Create Admin</h3>
+              <p>Assign a new administrator.</p>
             </div>
           </div>
-          {/* Card 3: View Hospitals */}
-<div
-  className="action-card"
-  onClick={() =>
-    navigate("/admin/hospitals")
-  }
->
 
-  <div className="icon-wrapper green">
+          <div
+            className="action-card"
+            onClick={() => navigate("/admin/hospitals")}
+          >
+            <div className="icon-wrapper green">📋</div>
 
-    {/* Hospital List Icon */}
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-
-      <path d="M3 6h18" />
-
-      <path d="M3 12h18" />
-
-      <path d="M3 18h18" />
-
-      <path d="M8 3v18" />
-
-    </svg>
-
-  </div>
-
-  <div className="card-content">
-
-    <h3>
-      View Hospitals
-    </h3>
-
-    <p>
-      Browse all registered hospitals and details.
-    </p>
-
-  </div>
-
-</div>
+            <div className="card-content">
+              <h3>View Hospitals</h3>
+              <p>Browse registered facilities.</p>
+            </div>
+          </div>
 
         </section>
       </main>

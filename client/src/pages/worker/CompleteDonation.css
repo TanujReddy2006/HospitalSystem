@@ -1,222 +1,78 @@
-/* CompleteDonation.css */
-
-/* 1. Design System (Worker Purple) */
-:root {
-  --primary-purple: #7c3aed;
-  --purple-hover: #6d28d9;
-  --bg-color: #f5f3ff;
-  --text-main: #1e1b4b;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
-  --radius: 12px;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
+/* GAP KILLER */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .worker-layout {
   min-height: 100vh;
-  background-color: var(--bg-color);
-  font-family: 'Inter', sans-serif;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.worker-container {
   width: 100%;
-  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff !important;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin-top: 15px; /* Consistent top gap */
+  padding-bottom: 3rem;
 }
 
-/* 2. Header */
+/* Red Header Banner */
 .page-header {
-  margin-bottom: 2rem;
+  background-color: #dc2626 !important;
+  width: 100%;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
-.page-header h2 {
-  font-size: 1.75rem;
-  color: var(--text-main);
-  margin: 0.5rem 0;
-  font-weight: 700;
-}
-
-.page-header p {
-  color: var(--text-muted);
-  margin: 0;
-}
+.header-text h2 { font-size: 1.75rem; color: #ffffff !important; }
+.header-text p { font-size: 0.95rem; color: #ffffff !important; opacity: 0.9; }
 
 .back-btn {
-  background: none;
+  background-color: #ffffff !important;
+  color: #dc2626 !important;
   border: none;
-  color: var(--text-muted);
+  padding: 0.8rem 2rem !important;
+  border-radius: 8px !important;
   font-weight: 600;
   cursor: pointer;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  transition: color 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.back-btn:hover {
-  color: var(--primary-purple);
-  text-decoration: underline;
+/* Grid Layout */
+.donation-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
 }
 
-/* 3. Grid Layout */
 .donation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-/* 4. The Card */
 .donation-card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.donation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: #ddd6fe; /* Light purple border on hover */
-}
-
-/* Card Header */
-.card-header {
+  background: #ffffff;
   padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  border-bottom: 1px solid #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.donor-avatar {
-  width: 48px;
-  height: 48px;
-  background-color: #ede9fe;
-  color: var(--primary-purple);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.donor-info h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: var(--text-main);
-}
-
-.info-badge {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.info-badge strong {
-  color: var(--primary-purple);
-}
-
-/* Card Body */
-.card-body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: white;
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.input-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.form-input {
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: var(--text-main);
-  background: #fff;
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.form-input:focus {
-  border-color: var(--primary-purple);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
-}
-
-/* Custom Select Arrow */
-.select-wrapper {
-  position: relative;
-}
-
-.select-wrapper select {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1em;
-}
-
-/* Card Footer */
-.card-footer {
-  padding: 1.5rem;
-  background-color: #fafafa;
-  border-top: 1px solid var(--border-color);
-}
+.card-header { margin-bottom: 1.5rem; }
+.input-group { margin-bottom: 1rem; }
+.input-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; }
+.input-group input, .input-group select { width: 100%; padding: 0.6rem; border: 1px solid #d1d5db; border-radius: 6px; }
 
 .complete-btn {
   width: 100%;
-  background-color: var(--primary-purple);
+  background-color: #dc2626;
   color: white;
   border: none;
-  padding: 0.85rem;
-  border-radius: 8px;
+  padding: 0.75rem;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.complete-btn:hover {
-  background-color: var(--purple-hover);
-}
-
-/* Loading & Empty States */
-.empty-state, .loading-state {
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.empty-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.empty-state h3 {
-  margin: 0 0 0.5rem 0;
-  color: var(--text-main);
-}
-
-.empty-state p {
-  color: var(--text-muted);
+  margin-top: 1rem;
 }

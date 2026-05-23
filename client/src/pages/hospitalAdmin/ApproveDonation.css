@@ -1,71 +1,83 @@
-/* ApproveDonation.css */
-
-/* 1. Design System (Emerald Green Theme) */
-:root {
-  --primary-green: #059669;
-  --green-hover: #047857;
-  --bg-color: #f0fdfa;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
+/* Base Layout */
 .approval-layout {
   min-height: 100vh;
-  background-color: var(--bg-color);
-  font-family: 'Inter', sans-serif;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  background-color: #f9fafb; /* Clean light gray */
+  font-family: system-ui, -apple-system, sans-serif;
+  /* Make sure there is NO padding here, or it will shrink the header */
 }
 
-.approval-container {
-  width: 100%;
-  max-width: 1000px;
-}
-
-/* 2. Header */
+/* Red Header Banner - Full Width */
+/* Red Header Banner - Full Width */
 .page-header {
-  margin-bottom: 2rem;
+  background-color: #dc2626; /* Professional Medical Red */
+  width: 100%;
+  padding: 1.25rem 2.5rem; 
+  box-sizing: border-box; 
+  display: flex; /* Enables Flexbox */
+  justify-content: space-between; /* 🔴 This pushes the text left and button right */
+  align-items: center; /* Vertically centers them */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.page-header h2 {
-  color: var(--text-main);
-  margin: 0.5rem 0;
-  font-size: 1.75rem;
-}
-
-.page-header p {
-  color: var(--text-muted);
+/* Header Text Group */
+.header-text h2 {
   margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: #ffffff; 
 }
 
+/* Navigation Button on the Right */
 .back-btn {
-  background: none;
+  background-color: #ffffff;
+  color: #dc2626; /* Red text */
   border: none;
-  color: var(--text-muted);
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0;
-  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.15s;
+  white-space: nowrap; /* Prevents the button text from wrapping on small screens */
 }
 
 .back-btn:hover {
-  color: var(--primary-green);
-  text-decoration: underline;
+  background-color: #f3f4f6;
 }
 
-/* 3. Table Card */
+.header-text p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+/* Navigation Button */
+
+
+.back-btn:hover {
+  background-color: #ffffff;
+}
+
+/* Main Table Container */
+.approval-container {
+  max-width: 1000px;
+  margin: 3rem auto; /* Adds space between the full-width header and the table */
+  padding: 0 1.5rem; /* Prevents table from touching screen edges on small monitors */
+}
+
+/* Main Table Card */
 .table-card {
-  background: white;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  overflow: hidden; /* Keeps border radius on child table */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
+/* Table Wrapper */
 .table-responsive {
   overflow-x: auto;
 }
@@ -76,128 +88,123 @@
   text-align: left;
 }
 
+/* Table Headers */
 .approval-table th {
-  background-color: #f8fafc;
+  background-color: #f3f4f6;
   padding: 1rem 1.5rem;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-color);
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb;
 }
 
+/* Table Rows & Cells */
 .approval-table td {
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #e5e7eb;
+  color: #111827;
   vertical-align: middle;
-  color: var(--text-main);
 }
 
-.approval-table tr:last-child td {
+.approval-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.approval-table tr:hover {
-  background-color: #fcfcfc;
+.approval-table tbody tr:hover {
+  background-color: #f9fafb;
 }
 
-/* 4. Column Specifics */
+/* Avatar & Donor Name Formatting */
 .donor-name {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   font-weight: 600;
 }
 
 .avatar-circle {
-  width: 32px;
-  height: 32px;
-  background-color: #e0f2fe;
-  color: #0284c7;
+  width: 36px;
+  height: 36px;
+  background-color: #fee2e2;
+  color: #dc2626;
   border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 0.875rem;
+  justify-content: center;
   font-weight: 700;
+  font-size: 1rem;
 }
 
-.text-muted {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-/* Blood Group Badges */
+/* Blood Group Pill Badge */
 .blood-badge {
-  display: inline-block;
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
   background-color: #fee2e2;
-  color: #991b1b;
-  letter-spacing: 0.5px;
+  color: #dc2626;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 1px solid #fca5a5;
+  display: inline-block;
 }
 
-/* 5. Approve Button */
-.approve-btn {
-  background-color: var(--primary-green);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
+/* Text Utilities */
+.text-muted {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Action Buttons Cell */
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.approve-btn, .reject-btn {
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
-  font-size: 0.875rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.15s;
+}
+
+.approve-btn {
+  background-color: #16a34a; 
+  color: #ffffff;
+  border: 1px solid #16a34a;
 }
 
 .approve-btn:hover {
-  background-color: var(--green-hover);
-  transform: translateY(-1px);
+  background-color: #15803d;
 }
 
-/* 6. Empty State */
-.empty-state {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.empty-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.empty-state h3 {
-  color: var(--text-main);
-  margin: 0 0 0.5rem 0;
-}
-
-.empty-state p {
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.loading-state {
-  padding: 3rem;
-  text-align: center;
-  color: var(--text-muted);
-  font-style: italic;
-}
-/* Reject Button */
 .reject-btn {
-  background-color: #ef4444; /* Red-500 */
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  margin-left: 0.5rem; /* Adds space if placed next to the Approve button */
+  background-color: #ffffff;
+  color: #dc2626;
+  border: 1px solid #d1d5db;
 }
 
 .reject-btn:hover {
-  background-color: #dc2626; /* Red-600 */
-  transform: translateY(-1px);
+  background-color: #fee2e2;
+  border-color: #dc2626;
+}
+
+/* Empty & Loading States */
+.loading-state, .empty-state {
+  padding: 5rem 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-state h3 {
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
 }

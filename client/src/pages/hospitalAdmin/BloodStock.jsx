@@ -25,20 +25,20 @@ export default function BloodStock() {
 
   return (
     <div className="stock-layout">
-      <div className="stock-container">
-        {/* Header */}
-        <div className="page-header">
-          <button
-            className="back-btn"
-            onClick={() => navigate("/hospital-admin")}
-          >
-            ← Dashboard
-          </button>
-          <h2>Blood Stock</h2>
-          <p>Current available blood units by blood group.</p>
-        </div>
+      
+      {/* Full-width Red Header Bar */}
+      <header className="top-red-bar">
+        <h2 className="header-title">Blood Stock</h2>
+        <button
+          className="header-back-btn"
+          onClick={() => navigate("/hospital-admin/home")}
+        >
+          Back to Dashboard
+        </button>
+      </header>
 
-        {/* Content */}
+      {/* Centered Middle Content */}
+      <main className="stock-container">
         {loading ? (
           <p className="loading-text">Loading stock...</p>
         ) : stock.length === 0 ? (
@@ -57,7 +57,8 @@ export default function BloodStock() {
             ))}
           </div>
         )}
-      </div>
+      </main>
+      
     </div>
   );
 }

@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const Hospital = require("../models/Hospital");
+const Donation =require("../models/Donation");
+const redisClient = require("../config/redis");
 
 exports.createHospitalAdmin = async (req, res) => {
   try {
@@ -29,7 +31,7 @@ exports.createHospitalAdmin = async (req, res) => {
       role: "hospital_admin",   // 🔒 forced
       hospitalId
     });
-
+    await redisClient.del("admin_dashboard_stats");
     res.status(201).json({
       message: "Hospital Admin created successfully",
       hospitalAdmin
@@ -94,6 +96,66 @@ async (req, res) => {
     res.status(500).json({
       message:
         "Server error"
+    });
+  }
+};
+exports.getDashboardStats = async (req, res) => {
+  try {
+    console.log("DASHBOARD STATS API HIT");
+
+    const cacheKey = "admin_dashboard_stats";
+
+    // Check Redis cache first
+    const cachedData = await redisClient.get(cacheKey);
+
+    if (cachedData) {
+      console.log("Cache HIT");
+
+      return res.status(200).json(
+        JSON.parse(cachedData)
+      );
+    }
+
+    console.log("Cache MISS");
+
+    // Fetch from MongoDB
+    const [totalHospitals, totalAdmins, pendingRequests] =
+      await Promise.all([
+
+        Hospital.countDocuments(),
+
+        User.countDocuments({
+          role: "hospital_admin"
+        }),
+
+        Donation.countDocuments({
+          status: "pending"
+        })
+
+      ]);
+
+    const stats = {
+      totalHospitals,
+      totalAdmins,
+      pendingRequests
+    };
+
+    // Store in Redis for 5 minutes
+    await redisClient.set(
+      cacheKey,
+      JSON.stringify(stats),
+      {
+        EX: 300
+      }
+    );
+
+    res.status(200).json(stats);
+
+  } catch (error) {
+    console.error("Dashboard stats error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch dashboard stats"
     });
   }
 };

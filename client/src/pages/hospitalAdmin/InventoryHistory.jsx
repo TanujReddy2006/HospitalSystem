@@ -24,29 +24,20 @@ export default function InventoryHistory() {
 
   return (
     <div className="history-layout">
-      <div className="history-container">
-        
-        {/* Header Section */}
-        <div className="page-header">
-          <button className="back-btn" onClick={() => navigate(-1)}>
-            &larr; Back
-          </button>
-          <div className="header-content">
-            <h2>Inventory Log</h2>
-            <p>Track all blood units added to the inventory.</p>
-          </div>
+      <header className="page-header">
+        <div className="header-text">
+          <h2>Inventory Log</h2>
+          <p>Track all blood units added to the inventory.</p>
         </div>
+        <button className="back-btn" onClick={() => navigate("/hospital-admin/home")}>
+          Back to Dashboard
+        </button>
+      </header>
 
-        {/* Table Section */}
+      <main className="history-container">
         <div className="table-card">
           {isLoading ? (
             <div className="loading-state">Loading records...</div>
-          ) : history.length === 0 ? (
-            <div className="empty-state">
-              <div className="empty-icon">📂</div>
-              <h3>No History Found</h3>
-              <p>No inventory movements have been recorded yet.</p>
-            </div>
           ) : (
             <div className="table-responsive">
               <table className="history-table">
@@ -63,27 +54,16 @@ export default function InventoryHistory() {
                   {history.map((h) => (
                     <tr key={h._id}>
                       <td className="date-cell">
-                        <span className="date">
-                          {new Date(h.createdAt).toLocaleDateString()}
-                        </span>
-                        <span className="time">
-                          {new Date(h.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </span>
+                        <span className="date">{new Date(h.createdAt).toLocaleDateString()}</span>
+                        <span className="time">{new Date(h.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                       </td>
                       <td>
-                        {/* Visual Badge for Blood Group */}
-                        <span className={`blood-badge ${h.bloodGroup?.replace('+', 'p').replace('-', 'n')}`}>
-                          {h.bloodGroup}
-                        </span>
+                        <span className="blood-badge">{h.bloodGroup}</span>
                       </td>
-                      <td className="units-cell">
-                        <strong>+{h.unitsAdded}</strong> units
-                      </td>
+                      <td className="units-cell"><strong>+{h.unitsAdded}</strong> units</td>
                       <td className="staff-cell">
-                        <div className="staff-avatar">
-                          {h.completedBy?.name?.charAt(0) || "S"}
-                        </div>
-                        {h.completedBy?.name || "Unknown Staff"}
+                        <div className="staff-avatar">{h.completedBy?.name?.charAt(0) || "S"}</div>
+                        {h.completedBy?.name || "Unknown"}
                       </td>
                       <td>
                         <span className="status-badge success">Stocked</span>
@@ -95,7 +75,7 @@ export default function InventoryHistory() {
             </div>
           )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

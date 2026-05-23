@@ -19,13 +19,11 @@ export default function DonationHistory() {
         setLoading(false);
       }
     };
-
     fetchHistory();
   }, []);
 
-  // Helper to style status badges
   const getStatusClass = (status) => {
-    switch (status.toLowerCase()) {
+    switch (status?.toLowerCase()) {
       case "completed": return "status-completed";
       case "approved": return "status-approved";
       case "rejected": return "status-rejected";
@@ -35,26 +33,24 @@ export default function DonationHistory() {
 
   return (
     <div className="history-layout">
-      <div className="history-container">
-        
-        {/* Header */}
-        <div className="page-header">
-          <button className="back-btn" onClick={() => navigate("/donor")}>
-            &larr; Back to Dashboard
-          </button>
-          <div className="header-content">
-            <h2>My Donation Journey</h2>
-            <p>A record of the lives you've impacted.</p>
-          </div>
+      {/* 🔴 FULL-WIDTH RED HEADER */}
+      <header className="page-header">
+        <div className="header-text">
+          <h2>My Donation Journey</h2>
+          <p>A record of the lives you've impacted.</p>
         </div>
+        <button className="back-btn" onClick={() => navigate("/donor/home")}>
+          Back to Dashboard
+        </button>
+      </header>
 
-        {/* Content */}
-        <div className="history-card">
+      {/* CENTERED CONTENT */}
+      <main className="history-container">
+        <div className="table-card">
           {loading ? (
             <div className="loading-state">Loading records...</div>
           ) : history.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-icon">🩸</div>
               <h3>No Donations Yet</h3>
               <p>You haven't made a donation request yet. Book your first appointment today!</p>
               <button className="book-btn" onClick={() => navigate("/donor/book-donation")}>
@@ -78,20 +74,18 @@ export default function DonationHistory() {
                     <tr key={d._id}>
                       <td className="date-cell">
                         {new Date(d.createdAt).toLocaleDateString(undefined, {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
+                          year: 'numeric', month: 'short', day: 'numeric'
                         })}
                       </td>
                       <td className="hospital-cell">
-                        {d.hospitalId?.name || "Unknown Hospital"}
-                        <span className="hospital-addr">{d.hospitalId?.address}</span>
+                        <div className="h-name">{d.hospitalId?.name || "Unknown Hospital"}</div>
+                        <div className="h-addr">{d.hospitalId?.address}</div>
                       </td>
                       <td>
                         <span className="blood-badge">{d.bloodGroup}</span>
                       </td>
                       <td className="units-cell">
-                        {d.unitsCollected ? `${d.unitsCollected} ml` : "-"}
+                        {d.unitsCollected ? `${d.unitsCollected} units` : "-"}
                       </td>
                       <td>
                         <span className={`status-badge ${getStatusClass(d.status)}`}>
@@ -105,7 +99,7 @@ export default function DonationHistory() {
             </div>
           )}
         </div>
-      </div>
+      </main>
     </div>
   );
-}   
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Added for navigation
+import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import "./CompleteDonation.css";
 
@@ -30,124 +30,63 @@ export default function CompleteDonation() {
     const units = unitsMap[id];
     const bloodGroup = bloodGroupMap[id];
 
-    if (!units || units <= 0) {
-      alert("Please enter a valid number of units.");
-      return;
-    }
-
-    if (!bloodGroup) {
-      alert("Please verify and select the blood group.");
-      return;
-    }
+    if (!units || units <= 0) return alert("Please enter valid units.");
+    if (!bloodGroup) return alert("Please select a blood group.");
 
     try {
-      await api.put(`/donations/${id}/complete`, {
-        units: Number(units),
-        bloodGroup
-      });
-
+      await api.put(`/donations/${id}/complete`, { units: Number(units), bloodGroup });
       setDonations((prev) => prev.filter((d) => d._id !== id));
       alert("Inventory updated successfully!");
     } catch (err) {
-      alert("Failed to complete donation. Please try again.");
+      alert("Failed to complete donation.");
     }
   };
 
   return (
     <div className="worker-layout">
-      <div className="worker-container">
-        
-        {/* Header Section */}
-        <div className="page-header">
-          <button className="back-btn" onClick={() => navigate("/worker")}>
-            &larr; Dashboard
-          </button>
+      {/* Red Header Bar */}
+      <header className="page-header">
+        <div className="header-text">
           <h2>Process Donations</h2>
           <p>Verify blood details and update inventory units.</p>
         </div>
+        <button className="back-btn" onClick={() => navigate("/worker/home")}>Back to Dashboard</button>
+      </header>
 
-        {/* Content Section */}
+      <main className="donation-container">
         {isLoading ? (
           <div className="loading-state">Loading tasks...</div>
         ) : donations.length === 0 ? (
-          <div className="empty-state">
-            <div className="empty-icon">✅</div>
-            <h3>All Caught Up!</h3>
-            <p>No approved donations waiting for processing.</p>
-          </div>
+          <div className="empty-state">All caught up! No approved donations waiting.</div>
         ) : (
           <div className="donation-grid">
             {donations.map((d) => (
               <div key={d._id} className="donation-card">
-                
-                {/* Card Header */}
                 <div className="card-header">
-                  <div className="donor-avatar">
-                    {d.donorId?.name?.charAt(0) || "D"}
-                  </div>
-                  <div className="donor-info">
-                    <h3>{d.donorId?.name || "Unknown Donor"}</h3>
-                    <span className="info-badge">
-                      Original: <strong>{d.bloodGroup}</strong>
-                    </span>
-                  </div>
+                  <h3>{d.donorId?.name || "Unknown Donor"}</h3>
+                  <span className="info-badge">Original: {d.bloodGroup}</span>
                 </div>
-
-                {/* Card Body (Inputs) */}
+                
                 <div className="card-body">
                   <div className="input-group">
                     <label>Verify Blood Group</label>
-                    <div className="select-wrapper">
-                      <select
-                        className="form-input"
-                        value={bloodGroupMap[d._id] || ""}
-                        onChange={(e) =>
-                          setBloodGroupMap({
-                            ...bloodGroupMap,
-                            [d._id]: e.target.value
-                          })
-                        }
-                      >
-                        <option value="">-- Select --</option>
-                        {BLOOD_GROUPS.map((bg) => (
-                          <option key={bg} value={bg}>{bg}</option>
-                        ))}
-                      </select>
-                    </div>
+                    <select value={bloodGroupMap[d._id] || ""} onChange={(e) => setBloodGroupMap({...bloodGroupMap, [d._id]: e.target.value})}>
+                      <option value="">-- Select --</option>
+                      {BLOOD_GROUPS.map((bg) => <option key={bg} value={bg}>{bg}</option>)}
+                    </select>
                   </div>
-
                   <div className="input-group">
-                    <label>Units Collected (ml/bag)</label>
-                    <input
-                      className="form-input"
-                      type="number"
-                      min="1"
-                      placeholder="e.g. 1"
-                      value={unitsMap[d._id] || ""}
-                      onChange={(e) =>
-                        setUnitsMap({
-                          ...unitsMap,
-                          [d._id]: e.target.value
-                        })
-                      }
-                    />
+                    <label>Units Collected</label>
+                    <input type="number" placeholder="e.g. 1" value={unitsMap[d._id] || ""} onChange={(e) => setUnitsMap({...unitsMap, [d._id]: e.target.value})} />
                   </div>
                 </div>
 
-                {/* Card Footer (Action) */}
-                <div className="card-footer">
-                  <button
-                    className="complete-btn"
-                    onClick={() => handleComplete(d._id)}
-                  >
-                    Confirm & Update Stock
-                  </button>
-                </div>
+                <button className="complete-btn" onClick={() => handleComplete(d._id)}>Confirm & Update Stock</button>
               </div>
             ))}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

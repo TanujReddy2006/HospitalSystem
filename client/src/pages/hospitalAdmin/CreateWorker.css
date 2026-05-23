@@ -1,105 +1,118 @@
-/* CreateWorker.css */
-
-/* Ensure these variables match your main theme */
-:root {
-  --primary-green: #059669;
-  --green-hover: #047857;
-  --bg-color: #f0fdfa;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+/* KILL ALL GAPS AND PADDING GLOBALLY */
+body, #root, .worker-layout {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
 }
 
-/* 1. Layout Wrapper - Centers the card */
-.worker-layout {
+/* Force the red bar to stick to the top */
+.page-header {
+  margin-top: 0 !important;
+  position: relative !important;
+}
+/* Force the body and layout to fill the screen with white */
+html, body, .worker-layout {
   min-height: 100vh;
-  background-color: var(--bg-color);
-  font-family: 'Inter', sans-serif;
+  width: 100%;
+  background-color: #ffffff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.worker-layout {
   display: flex;
+  flex-direction: column;
+}
+
+/* Red Header Banner */
+.page-header {
+  background-color: #dc2626 !important;
+  width: 100%;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
-/* 2. Card Container */
-.worker-card {
-  background: white;
-  width: 100%;
-  max-width: 400px; /* Compact width for a clean form look */
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  text-align: center;
-}
-
-/* 3. Header Styling */
-.worker-header {
-  margin-bottom: 2rem;
-}
-
-.worker-header h2 {
-  color: var(--text-main);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+.header-text h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.75rem;
   font-weight: 700;
+  color: #ffffff !important;
 }
 
-.worker-header p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.header-text p {
   margin: 0;
-}
-
-/* 4. Input Fields */
-.form-group {
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
   font-size: 0.95rem;
-  color: var(--text-main);
-  background-color: #fff;
-  transition: all 0.2s ease;
-  box-sizing: border-box; /* Prevents padding from breaking width */
+  color: #ffffff !important;
+  opacity: 0.9;
 }
 
-.form-input:focus {
-  outline: none;
-  border-color: var(--primary-green);
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1); /* Subtle green glow */
-}
-
-.form-input::placeholder {
-  color: #94a3b8;
-}
-
-/* 5. Submit Button */
-.create-btn {
-  width: 100%;
-  background-color: var(--primary-green);
-  color: white;
-  padding: 0.85rem;
+.back-btn {
+  background-color: #ffffff !important;
+  color: #dc2626 !important;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn:hover {
+  background-color: #f3f4f6 !important;
+}
+
+/* Centered Form Container */
+.worker-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.worker-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.create-btn {
+  width: 100%;
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
   margin-top: 1rem;
 }
 
 .create-btn:hover {
-  background-color: var(--green-hover);
-  transform: translateY(-1px);
-}
-
-.create-btn:active {
-  transform: translateY(0);
+  background-color: #b91c1c;
 }

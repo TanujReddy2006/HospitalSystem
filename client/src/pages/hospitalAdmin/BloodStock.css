@@ -1,59 +1,112 @@
+/* Base Layout */
 .stock-layout {
-  padding: 20px;
+  min-height: 100vh;
+  background-color: #f9fafb; /* Clean light gray background */
+  font-family: system-ui, -apple-system, sans-serif;
+  /* Removed padding here so the red bar can touch the absolute edges of the screen */
 }
 
-.stock-container {
-  max-width: 1000px;
-  margin: auto;
+/* Full-width Red Header Bar */
+.top-red-bar {
+  background-color: #dc2626; /* Professional medical red */
+  width: 100%;
+  padding: 1.25rem 2.5rem; /* Space inside the bar */
+  display: flex;
+  justify-content: space-between; /* Title to the left, button to the right */
+  align-items: center;
+  box-sizing: border-box; /* Prevents the padding from stretching the screen horizontally */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.page-header {
-  margin-bottom: 20px;
+.header-title {
+  color: #ffffff; /* White text for the title */
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
 }
 
-.back-btn {
-  background: none;
+.header-back-btn {
+  background-color: #ffffff; /* White button */
+  color: #dc2626; /* Red text to match the header */
   border: none;
-  color: #007bff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.15s;
 }
 
+.header-back-btn:hover {
+  background-color: #f3f4f6; /* Slight gray tint on hover */
+}
+
+/* Centered Middle Content */
+.stock-container {
+  max-width: 800px; /* Controls how wide the cards can get */
+  margin: 3rem auto; /* Centers the container and adds space below the header */
+  padding: 0 1rem;
+}
+
+/* List Layout for the Cards */
 .stock-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Space between each row */
 }
 
+/* White Card spanning left to right */
 .stock-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes blood group left and units right */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+.stock-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Red Blood Names (Left Side) */
 .blood-group {
-  font-size: 28px;
-  font-weight: bold;
-  color: #c0392b;
+  color: #dc2626; /* Red text */
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
+/* Black Unit Names (Right Side) */
 .units {
-  font-size: 18px;
-  margin-top: 10px;
+  color: #000000; /* Black text */
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .units span {
-  font-size: 14px;
-  color: #666;
+  color: #000000; 
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.loading-text {
+/* Loading and Empty States */
+.loading-text, .empty-state {
   text-align: center;
-}
-
-.empty-state {
-  text-align: center;
-  color: #777;
+  background-color: #ffffff;
+  padding: 3rem 1rem;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 1rem;
 }

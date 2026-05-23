@@ -1,25 +1,20 @@
 import { useState } from "react";
 import api from "../../api";
 import { useNavigate } from "react-router-dom";
-import "./CreateWorker.css"; // Make sure to import the CSS
+import "./CreateWorker.css";
 
 export default function CreateWorker() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleCreate = async () => {
-    // Simple validation
     if (!form.name || !form.email || !form.password) {
-        alert("Please fill in all fields");
-        return;
+      alert("Please fill in all fields");
+      return;
     }
 
     try {
@@ -33,47 +28,40 @@ export default function CreateWorker() {
 
   return (
     <div className="worker-layout">
-      <div className="worker-card">
-        
-        <div className="worker-header">
+      {/* Red Header Bar */}
+      <header className="page-header">
+        <div className="header-text">
           <h2>Create Hospital Worker</h2>
-          <p>Register a new staff member</p>
+          <p>Register a new staff member to the system.</p>
         </div>
-
-        <div className="form-group">
-          <input 
-            className="form-input"
-            name="name" 
-            placeholder="Full Name" 
-            onChange={handleChange} 
-          />
-        </div>
-
-        <div className="form-group">
-          <input 
-            className="form-input"
-            name="email" 
-            type="email"
-            placeholder="Email Address" 
-            onChange={handleChange} 
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            className="form-input"
-            name="password"
-            type="password"
-            placeholder="Temporary Password"
-            onChange={handleChange}
-          />
-        </div>
-
-        <button className="create-btn" onClick={handleCreate}>
-          Create Worker
+        <button className="back-btn" onClick={() => navigate("/hospital-admin/home")}>
+          Back to Dashboard
         </button>
+      </header>
 
-      </div>
+      {/* Centered Form Card */}
+      <main className="worker-container">
+        <div className="worker-card">
+          <div className="form-group">
+            <label>Full Name</label>
+            <input name="name" placeholder="John Doe" onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label>Email Address</label>
+            <input name="email" type="email" placeholder="staff@hospital.com" onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label>Temporary Password</label>
+            <input name="password" type="password" placeholder="••••••••" onChange={handleChange} />
+          </div>
+
+          <button className="create-btn" onClick={handleCreate}>
+            Create Worker
+          </button>
+        </div>
+      </main>
     </div>
   );
 }
